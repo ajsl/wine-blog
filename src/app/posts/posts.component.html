@@ -1,0 +1,35 @@
+<app-loading *ngIf="!loaded"></app-loading>
+<div *ngIf="loaded" class="container">
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">Leith's Wine Blog</h1>
+      <p>My wine journey in a wine desert</p>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div *ngFor="let post of posts" class="col-md-6">
+      <div
+        class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+      >
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">{{
+            assignCategory(post.categories)
+          }}</strong>
+          <h3 class="mb-0">{{ post.title.rendered }}</h3>
+          <div class="mb-1 text-muted">{{ post.date }}</div>
+          <p [innerHTML]="post.excerpt.rendered" class="card-text mb-auto"></p>
+          <a routerLink="/post/{{ post.id }}" class="stretched-link"
+            >Continue reading</a
+          >
+        </div>
+        <div class="thumbnail-img-container">
+          <div *ngIf="checkImage(post)" class="thumbnail-img">
+            <img alt="{{ this.assignImageAlt(post) }}" src="{{ this.assignImage(post) }}" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <app-post [post]="post"></app-post> -->
+  </div>
+</div>

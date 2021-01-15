@@ -1,0 +1,22 @@
+.thumbnail-img-container {
+   display: flex;
+   margin-right: 2px;
+   .thumbnail-img {
+       align-self: center;
+       padding-right: 2px;
+       img {
+           border: 5px solid grey;
+           background-color: grey;
+           max-width: 200px;
+       }
+   }
+
+
+}
+.container {
+    margin-top: 100px;
+}
+.jumbotron {
+    padding: 1rem; 
+    background-image: url("../../assets/gc.jpg");
+}
