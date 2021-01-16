@@ -5,17 +5,18 @@ import {map} from 'rxjs/operators';
 
 import { IPost } from './models/post';
 import { ICategories } from './models/categoies';
+import { IPage } from './models/page';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WpService {
-  baseUrl = "http://cms.ajsleith.com/wp-json/";
+  baseUrl = "http://cms.ajsleith.com/wp-json/wp/v2/";
 
   constructor(private http: HttpClient) { }
 
   getPosts(): Observable<IPost[]>{
-    return this.http.get<IPost[]>(this.baseUrl + 'wp/v2/posts?_embed',{
+    return this.http.get<IPost[]>(this.baseUrl + 'posts?_embed',{
       observe: 'response'
     })
     .pipe(
@@ -25,10 +26,13 @@ export class WpService {
     );
   }
   getPost(id: number): Observable<IPost>{
-    return this.http.get<IPost>(this.baseUrl + 'wp/v2/posts/' + id + '?_embed')
+    return this.http.get<IPost>(this.baseUrl + 'posts/' + id + '?_embed');
   }
   getCategories(): Observable<ICategories[]>{
-    return this.http.get<ICategories[]>(this.baseUrl + 'wp/v2/categories');
+    return this.http.get<ICategories[]>(this.baseUrl + 'categories');
+  }
+  getPage(id: number): Observable<IPage>{
+    return this.http.get<IPage>(this.baseUrl + 'pages/' + id + '?_embed');
   }
 
   // getCategories(): Observable<ICategories[]> {

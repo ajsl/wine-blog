@@ -9,7 +9,7 @@ import { ContactService } from '../contact.service';
 })
 export class ContactComponent implements OnInit {
   formData: FormGroup;
-s
+
   constructor(private formBuilder: FormBuilder, private contactService: ContactService) { }
 
   ngOnInit(): void {
@@ -19,14 +19,19 @@ s
       message: new FormControl('', [Validators.required])
 
     })
+
+    
   }
 
   onSubmit(data: any) {
     console.log(data)
     this.contactService.postMessage(data).subscribe(response => {
+
       console.log(response);
+      window.location.href = 'https://mailthis.to/confirm';
     })
 
   }
+
 
 }
